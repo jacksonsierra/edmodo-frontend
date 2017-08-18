@@ -1,0 +1,48 @@
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import {
+  Router,
+  browserHistory,
+} from 'react-router'
+import {
+  createStore,
+  applyMiddleware,
+} from 'redux'
+import {
+  persistStore,
+  autoRehydrate,
+} from 'redux-persist'
+import { composeWithDevTools } from 'redux-devtools-extension'
+import thunk from 'redux-thunk'
+import reducer from 'client/reducers'
+import routes from 'client/routes'
+
+const store = createStore(
+  reducer,
+  composeWithDevTools(
+    applyMiddleware(thunk),
+    autoRehydrate()
+  ),
+)
+
+persistStore(store)
+
+if (__DEV__ && module.hot) {
+  module.hot.accept('./reducers.js', () => {
+    store.replaceReducer(reducer)
+  })
+}
+
+window.document.addEventListener('DOMContentLoaded', () => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <Router
+        history={browserHistory}
+        onUpdate={() => window.scrollTo(0, 0)}
+        routes={routes}
+      />
+    </Provider>,
+    window.document.getElementById('root'),
+  )
+})

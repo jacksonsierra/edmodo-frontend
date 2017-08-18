@@ -1,0 +1,6 @@
+node_modules/
+.DS_Store
+static/**/*.js*
+*.log
+webpack-stats.json
+*.error
