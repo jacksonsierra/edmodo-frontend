@@ -8,4 +8,10 @@ const mapStateToProps = (state) => ({})
 const mapDispatchToProps = {}
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class RootModal extends Component {}
+export default class RootModal extends Component {
+  static propTypes = {}
+
+  render() {
+    return null
+  }
+}
