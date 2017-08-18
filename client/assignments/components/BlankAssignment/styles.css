@@ -1,0 +1,12 @@
+.container {
+  height: 100%;
+  width: 100%;
+  border: 1px solid #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container span {
+  font-size: 1.4em;
+}

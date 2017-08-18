@@ -1,0 +1,17 @@
+.container {
+  margin: 5em 2em;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  margin-left: 0.5em;
+  margin-bottom: 1em;
+}
+
+.body {
+  display: flex;
+  height: 100%;
+  box-sizing: border-box;
+}
