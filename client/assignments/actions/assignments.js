@@ -23,10 +23,10 @@ export const getAssignments = ({
   })
 }
 
-export const getAssignmentsList = (dispatch) => (options) => {
+export const getAssignmentsList = (options) => (dispatch) => {
   dispatch({ type: FETCH_ASSIGNMENTS.IN_PROGRESS })
   return getAssignments(options)
-    .then((data) => dispatch({
+    .then(({ data }) => dispatch({
       type: FETCH_ASSIGNMENTS.SUCCESS,
       payload: { data },
     }))
@@ -36,10 +36,10 @@ export const getAssignmentsList = (dispatch) => (options) => {
     })
 }
 
-export const getAdditionalAssignments = (dispatch) => (options) => {
+export const getAdditionalAssignments = (options) => (dispatch) => {
   dispatch({ type: FETCH_ADDL_ASSIGNMENTS.IN_PROGRESS })
   return getAssignments(options)
-    .then((data) => dispatch({
+    .then(({ data }) => dispatch({
       type: FETCH_ADDL_ASSIGNMENTS.SUCCESS,
       payload: { data },
     }))

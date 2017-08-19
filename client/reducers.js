@@ -1,8 +1,6 @@
 import { combineReducers } from 'redux'
-import {
-  assignments,
-  submissions,
-} from 'client/assignments/reducers'
+import { assignments } from 'client/assignments/reducers/assignments'
+import { submissions } from 'client/assignments/reducers/submissions'
 
 export default combineReducers({
   assignments,

@@ -25,10 +25,10 @@ export const getSubmissions = ({
   })
 }
 
-export const getSubmissionsList = (dispatch) => (options) => {
+export const getSubmissionsList = (options) => (dispatch) => {
   dispatch({ type: FETCH_SUBMISSIONS.IN_PROGRESS })
   return getSubmissions(options)
-    .then((data) => dispatch({
+    .then(({ data }) => dispatch({
       type: FETCH_SUBMISSIONS.SUCCESS,
       payload: { data },
     }))
@@ -38,10 +38,10 @@ export const getSubmissionsList = (dispatch) => (options) => {
     })
 }
 
-export const getAdditionalSubmissions = (dispatch) => (options) => {
+export const getAdditionalSubmissions = (options) => (dispatch) => {
   dispatch({ type: FETCH_ADDL_SUBMISSIONS.IN_PROGRESS })
   return getSubmissions(options)
-    .then((data) => dispatch({
+    .then(({ data }) => dispatch({
       type: FETCH_ADDL_SUBMISSIONS.SUCCESS,
       payload: { data },
     }))
