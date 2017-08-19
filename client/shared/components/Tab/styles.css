@@ -1,0 +1,42 @@
+.container {
+  position: relative;
+  display: inline-block;
+}
+
+.container:hover {
+  cursor: pointer;
+}
+
+.tab {
+  position: relative;
+  display: inline-block;
+  padding: 0.5em 1.5em;
+  font-size: 1.3em;
+}
+
+.tab::before {
+  content: '';
+  position: absolute;
+  top: -1em;
+  right: -1em;
+  bottom: 0.1em;
+  left: 0;
+  z-index: -1;
+  border-left: 1px solid #000000;
+  border-top: 1px solid #000000;
+  border-right: 1px solid #000000;
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
+  background: #c7c7c7;
+  transform: perspective(5px) rotateX(2deg);
+  transform-origin: bottom left;
+}
+
+.tab.active::before {
+  background: #ffffff;
+}
+
+.active {
+  z-index: 2;
+}
+

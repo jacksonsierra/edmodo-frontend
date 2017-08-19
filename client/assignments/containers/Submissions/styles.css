@@ -1,0 +1,13 @@
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 2em;
+}
+
+.spinner {
+  position: absolute;
+  top: 2em;
+  left: 50%;
+  transform: translateX(-50%, -50%);
+}
