@@ -1,0 +1,28 @@
+.container {
+  width: 0;
+  height: 0;
+}
+
+.down {
+  border-left: 2em solid transparent;
+  border-right: 2em solid transparent;
+  border-top: 3em solid #c7c7c7;
+}
+
+.up {
+  border-left: 2em solid transparent;
+  border-right: 2em solid transparent;
+  border-bottom: 3em solid #c7c7c7;
+}
+
+.left {
+  border-top: 2em solid transparent;
+  border-right: 3em solid #c7c7c7;
+  border-bottom: 2em solid transparent;
+}
+
+.right {
+  border-top: 2em solid transparent;
+  border-left: 3em solid #c7c7c7;
+  border-bottom: 2em solid transparent;
+}
