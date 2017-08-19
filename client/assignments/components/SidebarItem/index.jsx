@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router'
-import moment from 'moment'
+import { formatDate } from 'client/utils'
 import styles from './styles.css'
 
 export default class SidebarItem extends Component {
@@ -17,14 +17,19 @@ export default class SidebarItem extends Component {
       title,
       due_at,
     } = this.props
+    const dueAt = formatDate(due_at)
 
     return (
-      <div className={styles.container}>
-        <Link to={id}>
+      <Link
+        to={`/assignments/${id}`}
+        className={styles.link}
+        activeClassName={styles.active}
+      >
+        <div className={styles.container}>
           <span className={styles.title}>{title}</span>
-          <span className={styles.date}>{`due ${moment(due_at)}`}</span>
-        </Link>
-      </div>
+          <span className={styles.date}>{`due ${dueAt}`}</span>
+        </div>
+      </Link>
     )
   }
 }

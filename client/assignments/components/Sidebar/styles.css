@@ -1,4 +1,11 @@
 .container {
-  display: flex;
-  flex-direction: column;
+  position: relative;
+  width: 300px;
+  margin-right: 2.5em;
+}
+
+.spinner {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
