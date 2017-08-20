@@ -1,9 +1,9 @@
 # Assignments Web App
 
 ## Getting Started
-Install dependencies, `yarn install`
-Start dev server, `yarn start`
-Lint code, `yarn lint`
+- Install dependencies, `yarn install`
+- Start dev server, `yarn start`
+- Lint code, `yarn lint`
 
 ## Requirements
 - [x] A teacher can see a sidebar list of assignments with title and due date.
