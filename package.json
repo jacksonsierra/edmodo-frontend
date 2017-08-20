@@ -10,8 +10,7 @@
     "start": "NODE_ENV=development webpack-dev-server",
     "lint": "eslint client",
     "prebuild": "rimraf dist",
-    "build": "cross-env NODE_ENV=production webpack -p --config webpack.config.production.js",
-    "postbuild": "node ./server/bin/start"
+    "build": "cross-env NODE_ENV=production webpack -p --config webpack.config.production.js"
   },
   "dependencies": {
     "axios": "^0.16.2",
