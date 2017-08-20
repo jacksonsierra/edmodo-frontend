@@ -34,7 +34,10 @@ export default class Submission extends Component {
 
     return (
       <div className={styles.container}>
-        <div className={styles.row}>
+        <div
+          className={styles.row}
+          onClick={this.onClickArrow}
+        >
           <img
             className={styles.avatar}
             src={creator.avatars.large}
@@ -45,10 +48,7 @@ export default class Submission extends Component {
             </h2>
             <span className={styles.date}>{submittedAt}</span>
           </div>
-          <Arrow
-            onClick={this.onClickArrow}
-            direction={this.getArrowDirection()}
-          />
+          <Arrow direction={this.getArrowDirection()} />
         </div>
         {showContent && (
           <div className={styles.content}>

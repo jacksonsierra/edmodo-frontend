@@ -25,7 +25,7 @@ export class Arrow extends Component {
     return (
       <div
         className={`${styles.container} ${className}`}
-        onClick={this.props.onClick}
+        onClick={this.props.onClick || null}
       />
     )
   }
