@@ -6,7 +6,9 @@ import Spinner from 'client/shared/components/Spinner'
 import { getSubmissionsList } from 'client/assignments/actions/submissions'
 import styles from './styles.css'
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, ownProps) => ({
+  id: ownProps.params.id,
+  assignments: state.assignments,
   ...state.submissions,
 })
 
@@ -17,7 +19,8 @@ const mapDispatchToProps = {
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Submissions extends Component {
   static propTypes = {
-    assignment: PropTypes.object,
+    id: PropTypes.string,
+    assignments: PropTypes.object,
     page: PropTypes.number,
     per_page: PropTypes.number,
     data: PropTypes.arrayOf(PropTypes.object),
@@ -27,19 +30,14 @@ export default class Submissions extends Component {
   }
 
   componentDidMount() {
-    const {
-      assignment,
-      page,
-      per_page,
-    } = this.props
-    const { id: assignment_id } = assignment
-    const { id: assignment_creator_id } = assignment.creator
-    this.props.getSubmissionsList({
-      assignment_id,
-      assignment_creator_id,
-      page,
-      per_page,
-    })
+    if (this.props.assignments.data.length) {
+      this.getAssignmentSubmissions()
+    }
+  }
+
+  componentDidUpdate({ assignments }) {
+    if (!assignments.data.length && this.props.assignments.data.length)
+    this.getAssignmentSubmissions()
   }
 
   render() {
@@ -63,5 +61,25 @@ export default class Submissions extends Component {
         )}
       </div>
     )
+  }
+
+  getAssignmentSubmissions = () => {
+    const {
+      id: assignmentId,
+      assignments,
+      page,
+      per_page,
+    } = this.props
+    const assignment = _.find(assignments.data, ({ id }) => (
+      id === Number(assignmentId)
+    ))
+    const { id: assignment_id } = assignment
+    const { id: assignment_creator_id } = assignment.creator
+    this.props.getSubmissionsList({
+      assignment_id,
+      assignment_creator_id,
+      page,
+      per_page,
+    })
   }
 }

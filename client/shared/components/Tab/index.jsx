@@ -1,34 +1,32 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router'
 import styles from './styles.css'
 
 export default class Tab extends Component {
   static propTypes = {
     className: PropTypes.string,
-    onClick: PropTypes.func,
+    to: PropTypes.string,
     text: PropTypes.string,
-    isActive: PropTypes.bool,
   }
 
   render() {
     const {
       className,
-      onClick,
+      to,
       text,
-      isActive,
     } = this.props
 
     return (
       <div className={styles.container}>
-        <a
-          className={
-            `${styles.tab}
-            ${className || ''}
-            ${isActive && styles.active || ''}`}
-          onClick={onClick}
+        <Link
+          to={to}
+          className={`${styles.tab} ${className || ''}`}
+          activeClassName={styles.active}
+          onlyActiveOnIndex
         >
           {text}
-        </a>
+        </Link>
       </div>
     )
   }

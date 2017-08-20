@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import _ from 'lodash'
 import Tab from 'client/shared/components/Tab'
 import AssignmentDetails from 'client/assignments/components/AssignmentDetails'
-import Submissions from 'client/assignments/containers/Submissions'
 import styles from './styles.css'
 
 const mapStateToProps = (state, ownProps) => ({
@@ -12,30 +11,20 @@ const mapStateToProps = (state, ownProps) => ({
   assignments: state.assignments,
 })
 
-const mapDispatchToProps = {}
-
-@connect(mapStateToProps, mapDispatchToProps)
+@connect(mapStateToProps)
 export default class Assignment extends Component {
   static propTypes = {
+    children: PropTypes.node,
     id: PropTypes.string,
     assignments: PropTypes.object,
-    getSubmissionsList: PropTypes.func,
-  }
-
-  constructor() {
-    super()
-
-    this.state = {
-      showAssignmentDetails: true,
-    }
   }
 
   render() {
     const {
+      children,
       id: assignmentId,
       assignments,
     } = this.props
-    const { showAssignmentDetails } = this.state
     const assignment = _.find(assignments.data, ({ id }) => (
       id === Number(assignmentId)
     ))
@@ -44,25 +33,16 @@ export default class Assignment extends Component {
       <div className={styles.container}>
         <div className={styles.tabs}>
           <Tab
-            className={styles.tab}
-            onClick={this.onClickAssignmentTab}
+            to={`/assignments/${assignmentId}`}
             text="Assignment"
-            isActive={showAssignmentDetails}
           />
           <Tab
-            className={styles.tab}
-            onClick={this.onClickSubmissionsTab}
+            to={`/assignments/${assignmentId}/submissions`}
             text="Submissions"
-            isActive={!showAssignmentDetails}
           />
         </div>
-        {showAssignmentDetails && <AssignmentDetails {...assignment} />}
-        {!showAssignmentDetails && <Submissions assignment={assignment} />}
+        {children || <AssignmentDetails {...assignment} />}
       </div>
     )
   }
-
-  onClickAssignmentTab = () => this.setState({ showAssignmentDetails: true })
-
-  onClickSubmissionsTab = () => this.setState({ showAssignmentDetails: false })
 }
