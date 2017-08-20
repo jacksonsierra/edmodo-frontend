@@ -12,6 +12,6 @@
 
 .body {
   display: flex;
-  height: 100%;
+  flex: 1;
   box-sizing: border-box;
 }
